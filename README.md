@@ -29,7 +29,7 @@ I will analyze the worst and best cases for the time complexity of each algorith
 
 #### Algorithms
 
-|                |Best Case                          |Worst Case                         |
+|Algorithm                |Best Case                          |Worst Case                         |
 |----------------|-------------------------------|-----------------------------|
 |Longest Palindromic Substring          |Ω(1)            |O(n^2)            |
 |Palindromic Substrings Counter          |Ω(1)            |O(n^2)            |
@@ -38,6 +38,6 @@ I will analyze the worst and best cases for the time complexity of each algorith
 
 #### Data Structures
 
-|                |Best Case                          |Worst Case                         |
+|Data Structure                |Best Case                          |Worst Case                         |
 |----------------|-------------------------------|-----------------------------|
 |Binary Heap          |Ω(NlogN)            |O(NlogN)            |
