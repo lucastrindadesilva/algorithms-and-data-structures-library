@@ -10,7 +10,10 @@ The contents of this repository are organized in two folders: Algorithms and Dat
 ### Algorithms List
 
 - **Priority Queue**: It is an abstract data-type similar to a regular queue or stack data structure in which each element additionally has a priority associated with it. In a priority queue, an element with high priority is served before an element with low priority. In some implementations, if two elements have the same priority, they are served according to the order in which they were enqueued; in other implementations ordering of elements with the same priority remains undefined.
-	> **Note:** While coders often implement priority queues with heaps, they are conceptually distinct from heaps. A priority queue is a concept like a list or a map; just as a list can be implemented with a linked list or with an array, a priority queue can be implemented with a heap or with a variety of other methods such as an unordered array..
+	> **Note:** While coders often implement priority queues with heaps, they are conceptually distinct from heaps. A priority queue is a concept like a list or a map; just as a list can be implemented with a linked list or with an array, a priority queue can be implemented with a heap or with a variety of other methods such as an unordered array.
+
+- **Palindromic Substrings Counter**: Counter the number of palindromic substrings of a string.
+
 
 ### Data Structures List
 
@@ -23,5 +26,6 @@ I will only analyze the worst cases for the time complexity of each algorithm or
 
 |                |Best Case                          |Worst Case                         |
 |----------------|-------------------------------|-----------------------------|
+|Palindromic Substrings Counter          |Ω(1)            |O(n^2)            |
 |Priority Queue|Ω (n)            |O(n)            |
 |Binary Heap          |Ω            |O            |
