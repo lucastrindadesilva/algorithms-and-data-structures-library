@@ -9,6 +9,8 @@ The contents of this repository are organized in two folders: Algorithms and Dat
 
 ### Algorithms List
 
+- **Longest Palindromic Substring**: Given a string s, return the longest palindromic substring in s. A string is called a palindrome string if the reverse of that string is the same as the original string.
+
 - **Palindromic Substrings Counter**: Counter the number of palindromic substrings of a string.
 
 - **Priority Queue**: It is an abstract data-type similar to a regular queue or stack data structure in which each element additionally has a priority associated with it. In a priority queue, an element with high priority is served before an element with low priority. In some implementations, if two elements have the same priority, they are served according to the order in which they were enqueued; in other implementations ordering of elements with the same priority remains undefined.
@@ -22,10 +24,18 @@ The contents of this repository are organized in two folders: Algorithms and Dat
 
 ### Complexity analysis
 
-I will only analyze the worst cases for the time complexity of each algorithm or function, using the big-Θ notation to asymptotically limit the growth of the execution time.
+I will analyze the worst and best cases for the time complexity of each algorithm or function, using the big-Θ notation to asymptotically limit the growth of the execution time.
+
+#### Algorithms
 
 |                |Best Case                          |Worst Case                         |
 |----------------|-------------------------------|-----------------------------|
+|Longest Palindromic Substring          |Ω(1)            |O(n^2)            |
 |Palindromic Substrings Counter          |Ω(1)            |O(n^2)            |
 |Priority Queue|Ω(n)            |O(n)            |
+
+#### Data Structures
+
+|                |Best Case                          |Worst Case                         |
+|----------------|-------------------------------|-----------------------------|
 |Binary Heap          |Ω(NlogN)            |O(NlogN)            |
