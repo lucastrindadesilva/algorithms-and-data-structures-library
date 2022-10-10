@@ -27,5 +27,5 @@ I will only analyze the worst cases for the time complexity of each algorithm or
 |                |Best Case                          |Worst Case                         |
 |----------------|-------------------------------|-----------------------------|
 |Palindromic Substrings Counter          |Ω(1)            |O(n^2)            |
-|Priority Queue|Ω (n)            |O(n)            |
-|Binary Heap          |Ω            |O            |
+|Priority Queue|Ω(n)            |O(n)            |
+|Binary Heap          |Ω(NlogN)            |O(NlogN)            |
