@@ -11,6 +11,12 @@ The contents of this repository are organized in two folders: Algorithms and Dat
 
 - **Add Two Numbers**: You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
 
+- **Binary Search**: Binary Search Tree is a node-based binary tree data structure which has the following properties:
+
+	The left subtree of a node contains only nodes with keys lesser than the node’s key.
+	The right subtree of a node contains only nodes with keys greater than the node’s key.
+	The left and right subtree each must also be a binary search tree..
+
 - **Longest Palindromic Substring**: Given a string s, return the longest palindromic substring in s. A string is called a palindrome string if the reverse of that string is the same as the original string.
 
 - **Palindromic Substrings Counter**: Counter the number of palindromic substrings of a string.
@@ -34,6 +40,7 @@ I will analyze the worst and best cases for the time complexity of each algorith
 |Algorithm                |Best Case                          |Worst Case                         |
 |----------------|-------------------------------|-----------------------------|
 |Add Two Numbers          |Ω(n)            |O(n)            |
+|Binary Search          |Ω(logN)            |O(logN)            |
 |Longest Palindromic Substring          |Ω(1)            |O(n^2)            |
 |Palindromic Substrings Counter          |Ω(1)            |O(n^2)            |
 |Priority Queue|Ω(n)            |O(n)            |
