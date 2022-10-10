@@ -16,6 +16,7 @@ The contents of this repository are organized in two folders: Algorithms and Dat
 - **Priority Queue**: It is an abstract data-type similar to a regular queue or stack data structure in which each element additionally has a priority associated with it. In a priority queue, an element with high priority is served before an element with low priority. In some implementations, if two elements have the same priority, they are served according to the order in which they were enqueued; in other implementations ordering of elements with the same priority remains undefined.
 	> **Note:** While coders often implement priority queues with heaps, they are conceptually distinct from heaps. A priority queue is a concept like a list or a map; just as a list can be implemented with a linked list or with an array, a priority queue can be implemented with a heap or with a variety of other methods such as an unordered array.
 
+- **Two Sum**: Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
 
 ### Data Structures List
 
@@ -33,6 +34,7 @@ I will analyze the worst and best cases for the time complexity of each algorith
 |Longest Palindromic Substring          |Ω(1)            |O(n^2)            |
 |Palindromic Substrings Counter          |Ω(1)            |O(n^2)            |
 |Priority Queue|Ω(n)            |O(n)            |
+|Two Sum|Ω(n)            |O(n^2)            |
 
 #### Data Structures
 
