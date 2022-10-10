@@ -40,7 +40,7 @@ I will analyze the worst and best cases for the time complexity of each algorith
 |Algorithm                |Best Case                          |Worst Case                         |
 |----------------|-------------------------------|-----------------------------|
 |Add Two Numbers          |Ω(n)            |O(n)            |
-|Binary Search          |Ω(logN)            |O(logN)            |
+|Binary Search          |Ω(1)            |O(logN)            |
 |Longest Palindromic Substring          |Ω(1)            |O(n^2)            |
 |Palindromic Substrings Counter          |Ω(1)            |O(n^2)            |
 |Priority Queue|Ω(n)            |O(n)            |
