@@ -5,7 +5,7 @@ Hi, I'm Lucas Trindade and this is my Personal Library of Algorithms and Data St
 
 ## Content
 
-The contents of this repository are organized in two folders: Algorithms and Data Structures
+The contents of this repository are organized in two folders: Algorithms and Data Structures. Maybe in the future I'll add a folder of implemented design patterns here.
 
 ### Algorithms List
 
