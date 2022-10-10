@@ -8,6 +8,7 @@
     'abc' -> 3
     'abcba' -> 7
     'aaaa' -> 10
+    @todo = implement dynamic programming to improve time of execution
 """
 
 def palindrome_counter(text : str) -> int:
