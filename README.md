@@ -20,7 +20,7 @@ The contents of this repository are organized in foyr folders: Algorithms, Data 
 
 ### Data Structures List
 
-- **Binary Heap**: It is a tree-based data structure, which is a maximally efficient implementation of the priority queue. On a heap, the highest (or lowest) priority element is always stored at the root. , so a heap is a useful data structure when you need to repeatedly remove the object with the highest (or lowest) priority..
+- **Binary Heap**: It is a tree-based data structure, which is a maximally efficient implementation of the priority queue. On a heap, the highest (or lowest) priority element is always stored at the root. , so a heap is a useful data structure when you need to repeatedly remove the object with the highest (or lowest) priority.
 	> **Note:** The binary heap was invented by J.W.J. Williams. It is a very useful structure in building priority-queues and is at the heart of the Heapsort algorithm.
 
 ### Design Patterns List
@@ -32,7 +32,7 @@ The contents of this repository are organized in foyr folders: Algorithms, Data 
 - **Longest Palindromic Substring**: Given a string s, return the longest palindromic substring in s. A string is called a palindrome string if the reverse of that string is the same as the original string.
 
 - **Palindromic Substrings Counter**: Counter the number of palindromic substrings of a string.
-- 
+
 - **Remove Letter To Equalize Frequency**: You are given a 0-indexed string word, consisting of lowercase English letters. You need to select one index and remove the letter at that index from word so that the frequency of every letter present in word is equal. Return true if it is possible to remove one letter so that the frequency of all letters in word are equal, and false otherwise.
 
 - **Two Sum**: Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
