@@ -40,12 +40,19 @@ class Solution:
                     return [k,z]
          
     ### map solution = O(n)       
-    def twoSum2(self, nums: list[int], target: int) -> list[int]:
-        searched_dict = {}
-        for item in range(len(nums)):
-            searched = target - nums[item]
-            searched_dict[searched] = item
-            
-        for item in range(len(nums)):
-            if nums[item] in searched_dict.keys():
-                return [item, searched_dict[nums[item]]]
+    def twoSum2(self, nums: List[int], target: int) -> List[int]:
+        map = dict()
+        for index, num in enumerate(nums):
+            if num in map.keys():
+                map[num].append(index)
+            else:
+                map[num] = [index]
+
+        for index, num in enumerate(nums):
+            diff_to_target = target - num
+            if diff_to_target in map.keys():
+                for index2 in map[diff_to_target]:
+                    if index != index2:
+                        return [index, index2]
+        
+        return []
