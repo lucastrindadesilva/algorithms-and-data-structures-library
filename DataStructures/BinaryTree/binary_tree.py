@@ -56,10 +56,6 @@ class BinaryTree:
             self.root = new_node
             return True
         
-    def remove(self, value:int|str) -> bool:
-        """Remove a value in the Tree, if exists"""
-        pass
-
     def __insert(self, new_node:TreeNode, node:TreeNode=None, anterior_node:TreeNode=None) -> bool:
         if node is None:
             node = self.root
@@ -78,6 +74,9 @@ class BinaryTree:
                 node.right = new_node
                 return True
     
+    def remove(self, value:int|str) -> bool:
+        """Remove a value in the Tree, if exists"""
+        pass
     
     def __to_balance(self)->None:
         pass
