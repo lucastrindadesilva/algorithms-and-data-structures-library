@@ -7,7 +7,7 @@
 
 class TreeNode:
     """TreeNode class"""
-    def __init__(self, value:int|str, left:TreeNode = None, right:TreeNode = None) -> None:
+    def __init__(self, value:int|str, left:"TreeNode" = None, right:"TreeNode" = None) -> None:
         self.value = value
         self.left = left
         self.right = right
@@ -23,14 +23,14 @@ class BinaryTree:
     
     def __init__(self, value:int|str = None, is_balanced:bool = False) -> None:
         if value is not None:
-            self.root = self.create_node(value)
+            self.root = self.__create_node(value)
             self.lenght = 1
         else:
             self.root = None
             self.lenght = 0
         self.is_balanced = is_balanced
         
-    def create_node(self, value:int|str) -> bool:
+    def __create_node(self, value:int|str) -> bool:
         """Creates a new Node"""
         try:
             node = TreeNode(value)
@@ -41,7 +41,7 @@ class BinaryTree:
             
     def insert(self, value:int|str) -> bool:
         """Creates a new node in the Tree"""
-        new_node = self.create_node(value)
+        new_node = self.__create_node(value)
         if not new_node:
             return False
         if self.lenght > 0:
@@ -60,18 +60,20 @@ class BinaryTree:
         """Remove a value in the Tree, if exists"""
         pass
 
-    def __insert(self, new_node:TreeNode(value), node:TreeNode=self.root, anterior_node:TreeNode=None) -> bool:
-        if node.value == value:
+    def __insert(self, new_node:TreeNode, node:TreeNode=None, anterior_node:TreeNode=None) -> bool:
+        if node is None:
+            node = self.root
+        if node.value == new_node.value:
             return False #no duplicates
-        elif node.value > value:
+        elif node.value > new_node.value:
             if node.left is not None:
-                return self.__insert(value=value, node=node.left, anterior_node=node)
+                return self.__insert(new_node=new_node, node=node.left, anterior_node=node)
             else:
                 node.left = new_node
                 return True
-        else: #node.value < value
+        else: #node.value < new_node.value
             if node.right is not None:
-                return self.__insert(value=value, node=node.right, anterior_node=node)
+                return self.__insert(new_node=new_node, node=node.right, anterior_node=node)
             else:
                 node.right = new_node
                 return True
@@ -82,51 +84,122 @@ class BinaryTree:
 
     def get_height(self) -> int: #altura
         """Return the atual height of Tree."""
-        pass
+        max_height = 0
+        
+        def get_height_recursive(node:TreeNode, atual_height:int=1):
+            nonlocal max_height
+            if atual_height > max_height:
+                max_height = atual_height
+            if node.left is not None:
+                get_height_recursive(node.left, atual_height+1)
+            if node.right is not None:
+                get_height_recursive(node.right, atual_height+1)
+
+        if self.root is not None:
+            get_height_recursive(self.root)         
+        return max_height
     
     def get_width(self) -> int: #largura
         """Return the atual width of Tree."""
-        if self.lenght == 0:
-            return 0
-        width = 1
-
-        node = self.root
-        while node.left is not None:
-            width += 1
-            node = node.left
+        min_width = 0
+        max_width = 0
         
-        
+        def get_width_recursive(node:TreeNode, atual_width:int=1):
+            nonlocal min_width
+            nonlocal max_width
+            if atual_width < min_width:
+                min_width = atual_width
+            if atual_width > max_width:
+                max_width = atual_width
+            if node.left is not None:
+                get_width_recursive(node.left, atual_width-1)
+            if node.right is not None:
+                get_width_recursive(node.right, atual_width+1)
 
+        if self.root is not None:
+            get_width_recursive(self.root)         
+        return max_width - min_width
+        
     def get_lenght(self)->int:
         return self.lenght
+    
+    def search(self, value:int|str) -> bool:
+        return self.__search(value=value, root=self.root)
 
-    def search(self, value:int|str, root:TreeNode = self.root) -> bool:
+    def __search(self, value:int|str, root:TreeNode) -> bool:
         if root is None:
             return False
         elif root.value == value:
             return True
         elif root.value > value and root.left is not None:
-            return self.binary_search(value=value, root=root.left)
+            return self.__search(value=value, root=root.left)
         elif root.value < value and root.right is not None:
-            return self.binary_search(value=value, root=root.right)
+            return self.__search(value=value, root=root.right)
         else:
             return False
     
     def __str__(self) -> str:
+        if self.lenght == 0:
+            return "Empty Tree"
+        
+        nodes = dict()
+        
+        def get_print(node:TreeNode, height:int=0, parent:int|str=None, side:str='center')->dict:
+            if node is None:
+                return
+            
+            if height not in nodes.keys():
+                if parent is None:
+                    nodes[height] = {
+                        'None' : {
+                            side : node.value
+                        }
+                    }
+                else:
+                    nodes[height] = {
+                        parent : {
+                            side : node.value
+                        }
+                    }
+            elif height in nodes.keys() and parent is not None:
+                if parent in nodes[height].keys():
+                    nodes[height][parent][side] = node.value
+                else:
+                    nodes[height][parent] = {
+                        side : node.value
+                    }
+
+            height += 1
+            get_print(node=node.left, height=height, parent=node.value, side='left')
+            get_print(node=node.right, height=height, parent=node.value, side='right')
+        
+        get_print(self.root)
         text = "============ Tree ============\n"
-        text += "Vertexes: [\n"
-        for vertex in self.adjacencies.keys():
-            text += str(vertex) + ": | OutDegree = " + str(self.get_outdegree(vertex=vertex))  + " | InDegree = " + str(self.get_indegree(vertex=vertex)) + "\n"
-        text += "]\n"
-        text += "Edges:\n"
-        for vertex in self.adjacencies.keys():
-            for edge in self.adjacencies[vertex]:
-                text += str(vertex) + " ------(" + str(edge[1]) + ")------> " + str(edge[0]) + "\n"
+        text += "Width = {}\n".format(self.get_width())
+        text += "Height = {}\n".format(self.get_height())
+        text += self.__format_str(nodes=nodes)
         return text
-
-
-string_tree = BinaryTree('A')
-print(string_tree)
-
-integer_tree = BinaryTree(1)
-print(integer_tree)
+    
+    def __format_str(self, nodes:dict)->str:  
+        result = ""
+        
+        def run_tree(level:int, parent:int|str)->str:
+            #nonlocal result
+            text = ""
+            if level in nodes.keys() and parent in nodes[level].keys():
+                if 'left' in nodes[level][parent].keys():
+                    left_node = nodes[level][parent]['left']
+                    text += '\n{}|_left: {}'.format((' '*(level-1)), str(left_node))
+                    text += run_tree(level=(level+1), parent=left_node)
+                if 'right' in nodes[level][parent].keys():
+                    right_node = nodes[level][parent]['right']
+                    text += '\n{}|_right: {}'.format((' '*(level-1)), str(right_node))
+                    text += run_tree(level=(level+1), parent=right_node)
+                return text
+            else:
+                return ""
+                
+        root = nodes[0]['None']['center']
+        result = str(root)
+        result += run_tree(level=1,parent=root)
+        return result
