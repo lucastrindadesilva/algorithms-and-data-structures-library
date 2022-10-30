@@ -20,6 +20,7 @@ class TreeNode:
 
 class BinaryTree:
     """Binary Tree Class"""
+    
     def __init__(self, value:int|str = None, is_balanced:bool = False) -> None:
         if value is not None:
             self.root = self.create_node(value)
@@ -29,7 +30,6 @@ class BinaryTree:
             self.lenght = 0
         self.is_balanced = is_balanced
         
-      
     def create_node(self, value:int|str) -> bool:
         """Creates a new Node"""
         try:
@@ -56,7 +56,6 @@ class BinaryTree:
             self.root = new_node
             return True
         
-
     def remove(self, value:int|str) -> bool:
         """Remove a value in the Tree, if exists"""
         pass
@@ -90,7 +89,7 @@ class BinaryTree:
         if self.lenght == 0:
             return 0
         width = 1
-        
+
         node = self.root
         while node.left is not None:
             width += 1
@@ -124,3 +123,10 @@ class BinaryTree:
             for edge in self.adjacencies[vertex]:
                 text += str(vertex) + " ------(" + str(edge[1]) + ")------> " + str(edge[0]) + "\n"
         return text
+
+
+string_tree = BinaryTree('A')
+print(string_tree)
+
+integer_tree = BinaryTree(1)
+print(integer_tree)
