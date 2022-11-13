@@ -76,7 +76,7 @@ class BinaryTree:
                 node.right = new_node
                 return True
     
-    def remove(self, value:int|str) -> bool:
+    def remove(self, value:tuple) -> bool:
         """Remove a value in the Tree, if exists"""
         pass
     
@@ -142,7 +142,7 @@ class BinaryTree:
         
         nodes = dict()
         
-        def get_print(node:TreeNode, height:int=0, parent:int|str=None, side:str='center')->dict:
+        def get_print(node:TreeNode, height:int=0, parent:tuple=None, side:str='center')->dict:
             if node is None:
                 return
             

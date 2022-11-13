@@ -1,11 +1,23 @@
 from binary_tree import BinaryTree
 
-string_tree = BinaryTree('A')
-string_tree.insert('B')
-string_tree.insert('C')
-string_tree.insert('D')
-string_tree.insert('F')
-string_tree.insert('E')
+item = ('A', ['alberto','amelia','augusto','andrea'])
+string_tree = BinaryTree(item)
+
+item = ('B', ['bob','bianca','bruna','barbara'])
+string_tree.insert(item)
+
+item = ('C', ['claudio','cintia'])
+string_tree.insert(item)
+
+item = ('D', ['dandara','dalton','diego','deleteria'])
+string_tree.insert(item)
+
+item = ('F', ['flavia','flavio','fernanda'])
+string_tree.insert(item)
+
+item = ('E', ['edgar','eliana','eudes','elvira'])
+string_tree.insert(item)
+
 print(string_tree.search("E"))
 print(string_tree.search('Z'))
 print(string_tree)
