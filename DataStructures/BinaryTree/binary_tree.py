@@ -7,7 +7,8 @@
 
 class TreeNode:
     """TreeNode class"""
-    def __init__(self, value:int|str, left:TreeNode = None, right:TreeNode = None) -> None:
+    #def __init__(self, value:tuple, left:TreeNode = None, right:TreeNode = None) -> None:
+    def __init__(self, value:tuple, left = None, right = None) -> None:
         self.value = value
         self.left = left
         self.right = right
@@ -21,16 +22,17 @@ class TreeNode:
 class BinaryTree:
     """Binary Tree Class"""
     
-    def __init__(self, value:int|str = None, is_balanced:bool = False) -> None:
+    def __init__(self, value:tuple = None, is_balanced:bool = False) -> None:
         if value is not None:
             self.root = self.create_node(value)
             self.lenght = 1
         else:
             self.root = None
             self.lenght = 0
+
         self.is_balanced = is_balanced
         
-    def create_node(self, value:int|str) -> bool:
+    def create_node(self, value:tuple) -> bool:
         """Creates a new Node"""
         try:
             node = TreeNode(value)
@@ -39,7 +41,7 @@ class BinaryTree:
         finally:
             return node
             
-    def insert(self, value:int|str) -> bool:
+    def insert(self, value:tuple) -> bool:
         """Creates a new node in the Tree"""
         new_node = self.create_node(value)
         if not new_node:
@@ -63,7 +65,7 @@ class BinaryTree:
     def __insert(self, new_node:TreeNode(value), node:TreeNode=self.root, anterior_node:TreeNode=None) -> bool:
         if node.value == value:
             return False #no duplicates
-        elif node.value > value:
+        elif node.value[0] > value[0]:
             if node.left is not None:
                 return self.__insert(value=value, node=node.left, anterior_node=node)
             else:
@@ -100,14 +102,14 @@ class BinaryTree:
     def get_lenght(self)->int:
         return self.lenght
 
-    def search(self, value:int|str, root:TreeNode = self.root) -> bool:
+    def search(self, value:tuple, root:TreeNode = self.root) -> bool:
         if root is None:
             return False
-        elif root.value == value:
+        elif root.value[0] == value[0]:
             return True
-        elif root.value > value and root.left is not None:
+        elif root.value[0] > value[0] and root.left is not None:
             return self.binary_search(value=value, root=root.left)
-        elif root.value < value and root.right is not None:
+        elif root.value[0] < value[0] and root.right is not None:
             return self.binary_search(value=value, root=root.right)
         else:
             return False
@@ -125,8 +127,8 @@ class BinaryTree:
         return text
 
 
-string_tree = BinaryTree('A')
+string_tree = BinaryTree(('A', ['Augusto', 'Amanda']))
 print(string_tree)
 
-integer_tree = BinaryTree(1)
+integer_tree = BinaryTree((1, [1,2,3]))
 print(integer_tree)
