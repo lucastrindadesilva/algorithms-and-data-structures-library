@@ -32,7 +32,7 @@ class BinaryTree:
 
         self.is_balanced = is_balanced
         
-    def create_node(self, value:tuple) -> bool:
+    def __create_node(self, value:tuple) -> bool:
         """Creates a new Node"""
         try:
             node = TreeNode(value)
@@ -61,15 +61,15 @@ class BinaryTree:
     def __insert(self, new_node:TreeNode, node:TreeNode=None, anterior_node:TreeNode=None) -> bool:
         if node is None:
             node = self.root
-        if node.value == new_node.value:
+        if node.value[0] == new_node.value[0]:
             return False #no duplicates
-        elif node.value[0] > value[0]:
+        elif node.value[0] > new_node.value[0]:
             if node.left is not None:
                 return self.__insert(new_node=new_node, node=node.left, anterior_node=node)
             else:
                 node.left = new_node
                 return True
-        else: #node.value < new_node.value
+        else: #node.value[0] < new_node.value[0]
             if node.right is not None:
                 return self.__insert(new_node=new_node, node=node.right, anterior_node=node)
             else:
@@ -124,15 +124,14 @@ class BinaryTree:
     def get_lenght(self)->int:
         return self.lenght
 
-    def search(self, value:tuple, root:TreeNode = self.root) -> bool:
-        if root is None:
-            return False
-        elif root.value[0] == value[0]:
+    def search(self, value:tuple, root:TreeNode = None) -> bool:
+        root = self.root if root is None else root
+        if root.value[0] == value[0]:
             return True
         elif root.value[0] > value[0] and root.left is not None:
-            return self.binary_search(value=value, root=root.left)
+            return self.search(value=value, root=root.left)
         elif root.value[0] < value[0] and root.right is not None:
-            return self.binary_search(value=value, root=root.right)
+            return self.search(value=value, root=root.right)
         else:
             return False
     
@@ -140,38 +139,36 @@ class BinaryTree:
         if self.lenght == 0:
             return "Empty Tree"
         
-        nodes = dict()
-        
         def get_print(node:TreeNode, height:int=0, parent:tuple=None, side:str='center')->dict:
+            nodes = {}
+
             if node is None:
                 return
             
+            new_node_to_print = {
+                side : node.value
+            }
+
             if height not in nodes.keys():
                 if parent is None:
                     nodes[height] = {
-                        'None' : {
-                            side : node.value
-                        }
+                        'None' : new_node_to_print
                     }
                 else:
                     nodes[height] = {
-                        parent : {
-                            side : node.value
-                        }
+                        parent : new_node_to_print
                     }
             elif height in nodes.keys() and parent is not None:
                 if parent in nodes[height].keys():
                     nodes[height][parent][side] = node.value
                 else:
-                    nodes[height][parent] = {
-                        side : node.value
-                    }
+                    nodes[height][parent] = new_node_to_print
 
             height += 1
             get_print(node=node.left, height=height, parent=node.value, side='left')
             get_print(node=node.right, height=height, parent=node.value, side='right')
         
-        get_print(self.root)
+        nodes = get_print(self.root)
         text = "============ Tree ============\n"
         text += "Width = {}\n".format(self.get_width())
         text += "Height = {}\n".format(self.get_height())
