@@ -65,3 +65,4 @@ graph.new_edge(vertex=9, edge=(12,0))
 
 print(graph)
 print(graph.dfs(1,11))
+print(graph.dfs(1,None))
