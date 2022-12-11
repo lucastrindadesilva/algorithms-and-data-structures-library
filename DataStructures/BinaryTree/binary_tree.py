@@ -102,16 +102,11 @@ class BinaryTree:
     
     def get_width(self) -> int: #largura
         """Return the atual width of Tree."""
-        min_width = 0
-        max_width = 0
+        widths = set()
         
         def get_width_recursive(node:TreeNode, atual_width:int=1):
-            nonlocal min_width
-            nonlocal max_width
-            if atual_width < min_width:
-                min_width = atual_width
-            if atual_width > max_width:
-                max_width = atual_width
+            nonlocal widths
+            widths.add(atual_width)
             if node.left is not None:
                 get_width_recursive(node.left, atual_width-1)
             if node.right is not None:
@@ -119,18 +114,18 @@ class BinaryTree:
 
         if self.root is not None:
             get_width_recursive(self.root)         
-        return max_width - min_width
+        return len(widths)
         
     def get_lenght(self)->int:
         return self.lenght
 
-    def search(self, value:tuple, root:TreeNode = None) -> bool:
+    def search(self, value:int|str, root:TreeNode = None) -> bool:
         root = self.root if root is None else root
-        if root.value[0] == value[0]:
+        if root.value[0] == value:
             return True
-        elif root.value[0] > value[0] and root.left is not None:
+        elif root.value[0] > value and root.left is not None:
             return self.search(value=value, root=root.left)
-        elif root.value[0] < value[0] and root.right is not None:
+        elif root.value[0] < value and root.right is not None:
             return self.search(value=value, root=root.right)
         else:
             return False
@@ -138,9 +133,10 @@ class BinaryTree:
     def __str__(self) -> str:
         if self.lenght == 0:
             return "Empty Tree"
+        nodes = {}
         
         def get_print(node:TreeNode, height:int=0, parent:tuple=None, side:str='center')->dict:
-            nodes = {}
+            nonlocal nodes
 
             if node is None:
                 return
@@ -156,19 +152,19 @@ class BinaryTree:
                     }
                 else:
                     nodes[height] = {
-                        parent : new_node_to_print
+                        parent[0] : new_node_to_print
                     }
             elif height in nodes.keys() and parent is not None:
-                if parent in nodes[height].keys():
-                    nodes[height][parent][side] = node.value
+                if parent[0] in nodes[height].keys():
+                    nodes[height][parent[0]][side] = node.value
                 else:
-                    nodes[height][parent] = new_node_to_print
+                    nodes[height][parent[0]] = new_node_to_print
 
             height += 1
             get_print(node=node.left, height=height, parent=node.value, side='left')
             get_print(node=node.right, height=height, parent=node.value, side='right')
         
-        nodes = get_print(self.root)
+        get_print(self.root)
         text = "============ Tree ============\n"
         text += "Width = {}\n".format(self.get_width())
         text += "Height = {}\n".format(self.get_height())
@@ -178,16 +174,16 @@ class BinaryTree:
     def __format_str(self, nodes:dict)->str:  
         result = ""
         
-        def run_tree(level:int, parent:int|str)->str:
+        def run_tree(level:int, parent:tuple)->str:
             #nonlocal result
             text = ""
-            if level in nodes.keys() and parent in nodes[level].keys():
-                if 'left' in nodes[level][parent].keys():
-                    left_node = nodes[level][parent]['left']
+            if level in nodes.keys() and parent[0] in nodes[level].keys():
+                if 'left' in nodes[level][parent[0]].keys():
+                    left_node = nodes[level][parent[0]]['left']
                     text += '\n{}|_left: {}'.format((' '*(level-1)), str(left_node))
                     text += run_tree(level=(level+1), parent=left_node)
-                if 'right' in nodes[level][parent].keys():
-                    right_node = nodes[level][parent]['right']
+                if 'right' in nodes[level][parent[0]].keys():
+                    right_node = nodes[level][parent[0]]['right']
                     text += '\n{}|_right: {}'.format((' '*(level-1)), str(right_node))
                     text += run_tree(level=(level+1), parent=right_node)
                 return text
