@@ -10,14 +10,14 @@ class Graph:
     def __init__(self) -> None:
         self.adjacencies = {}
       
-    def new_vertex(self, vertex:int) -> bool:
+    def new_vertex(self, vertex:int|str) -> bool:
         """Creates a new Vertex"""
         if vertex not in self.adjacencies.keys():    
             self.adjacencies[vertex] = []
             return True
         return False
             
-    def new_edge(self, vertex:int, edge:tuple) -> bool:
+    def new_edge(self, vertex:int|str, edge:tuple) -> bool:
         """Creates a new edge if the vertexes exist in the graph"""
         if (    vertex in self.adjacencies.keys() 
                 and edge[0] in self.adjacencies.keys() 
@@ -27,7 +27,7 @@ class Graph:
             return True
         return False
     
-    def get_outdegree(self, vertex:int) -> int:#O(1)
+    def get_outdegree(self, vertex:int|str) -> int:#O(1)
         """Outdegree of vertex V is the number of edges which are going out from the vertex V."""
         if vertex in self.adjacencies.keys():
             return len(self.adjacencies[vertex])
