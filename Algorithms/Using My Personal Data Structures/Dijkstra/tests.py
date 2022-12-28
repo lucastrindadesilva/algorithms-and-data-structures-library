@@ -1,0 +1,43 @@
+from dijkstra import Dijkstra
+
+graph = Dijkstra()
+graph.new_vertex("a")
+graph.new_vertex("b")
+graph.new_vertex("c")
+graph.new_vertex("d")
+graph.new_vertex("e")
+graph.new_vertex("f")
+graph.new_vertex("g")
+graph.new_vertex("h")
+graph.new_edge("a", ("b", 8))
+graph.new_edge("a", ("c", 3))
+graph.new_edge("a", ("d", 6))
+graph.new_edge("b", ("a", 8))
+graph.new_edge("b", ("e", 5))
+graph.new_edge("c", ("a", 3))
+graph.new_edge("c", ("d", 2))
+graph.new_edge("d", ("a", 6))
+graph.new_edge("d", ("c", 2))
+graph.new_edge("d", ("e", 5))
+graph.new_edge("d", ("g", 3))
+graph.new_edge("e", ("b", 5))
+graph.new_edge("e", ("d", 5))
+graph.new_edge("e", ("f", 5))
+graph.new_edge("f", ("e", 5))
+graph.new_edge("f", ("g", 3))
+graph.new_edge("f", ("h", 6))
+graph.new_edge("g", ("d", 3))
+graph.new_edge("g", ("f", 3))
+graph.new_edge("g", ("h", 4))
+graph.new_edge("h", ("g", 4))
+graph.new_edge("h", ("f", 6))
+print(graph)   
+
+distances = graph.dijkstra(root="a")
+print(distances)
+#{'a': 0, 'c': 3, 'd': 5, 'b': 8, 'g': 8, 'e': 10, 'f': 11, 'h': 12}
+
+root = "a"
+target = "f"
+distance, path = graph.dijkstra_target(root="a", target="f")
+print(f"Distancia minima do {root} para o {target}: ", distance, " | E o caminho a ser percorrido é: ", path)
