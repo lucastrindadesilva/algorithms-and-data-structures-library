@@ -40,4 +40,4 @@ print(distances)
 root = "a"
 target = "f"
 distance, path = graph.dijkstra_target(root="a", target="f")
-print(f"Distancia minima do {root} para o {target}: ", distance, " | E o caminho a ser percorrido é: ", path)
+print(f"Distancia minima do {root} para o {target}: {distance} | E o caminho a ser percorrido é: {path}")
